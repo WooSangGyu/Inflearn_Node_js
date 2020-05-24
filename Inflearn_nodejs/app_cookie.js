@@ -27,10 +27,11 @@ cart = {
     3:0
 }
 */
+
 app.get('/cart/:id', function(req, res){
     var id = req.params.id;      //cart 의 아이디 값 저장
     if(req.signedCookies.cart) {              // 만약 cart의 값이 있다면 그대로 가져와서 적용 없다면 새롭게 cart의 값을 만듦
-        var cart = req.signedCookies.cart;
+        var cart = req.signedCookies.cart;  //signedCookies 암호화시키기
     } else {
       var cart = {};
     }
@@ -40,7 +41,7 @@ app.get('/cart/:id', function(req, res){
     }
     cart[id] = parseInt(cart[id])+1;   //cart[id]값에 현재 갯수+1해서 값 증가시키기
 
-    res.cookie('cart', cart, {signed:true})     // cookie의 'cart' 항목에 cart의 값을 저장 , singed:true는 암호화 된 쿠키를 풀라는 뜻
+    res.cookie('cart', cart, {signed:true})     // cookie의 'cart' 항목에 cart의 값을 저장 , singed:true는 쿠키를 저장할 때 암호화 해서 저장해라
     res.redirect('/cart'); // localhost3003/cart로 넘겨주기
 });
 
