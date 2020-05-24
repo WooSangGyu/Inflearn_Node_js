@@ -11,11 +11,11 @@ app.use(session({
   }));
 
 app.get('/auth/logout', function(req, res){
-    delete req.session.displayName;
+    delete req.session.displayName;   // 세션 삭제
     res.redirect('/welcome');
 });
 app.get('/welcome', function(req, res){
-    if(req.session.displayName){
+    if(req.session.displayName){ //만약 세션이 존재한다면 Hello displayName 띄우기.
         res.send(`
         <h1>Hello, ${req.session.displayName}</h1>
         <a href="/auth/logout">Logout</a>
@@ -28,18 +28,18 @@ app.get('/welcome', function(req, res){
     }
 });
 app.post('/auth/login', function(req, res) {
-    var user = {
+    var user = {                        //원래는 DB에서 가져와야됌
         username: 'sanggyu',
         password: '123',
         displayName:'SangGyu'
     };
-    var uname = req.body.username;
-    var pwd = req.body.password;
+    var uname = req.body.username;  //입력한 아이디 가져와서 uname에 저장
+    var pwd = req.body.password; // 입력한 비밀번호 pwd에 저장
 
-    if(uname == user.username && pwd == user.password){
-        req.session.displayName = user.displayName;
+    if(uname == user.username && pwd == user.password){     //입력한 아이디와 db의 아이디, 입력한 pw와 db비번 비교
+        req.session.displayName = user.displayName;              //만약 같다면 displayName에 user.displayName을 넣기
         res.redirect('/welcome');
-    } else {
+    } else {                                 // 값이 다르다면
         res.send(`Who are you?
         <p>
         <a href="/auth/login">login</a>
@@ -48,10 +48,10 @@ app.post('/auth/login', function(req, res) {
     }
 });
 
-app.get('/auth/login', function(req, res) {
+app.get('/auth/login', function(req, res) {     // submit을 클릭시 /auth/login으로 post형식으로 내용을 보냄
     var output =`
     <h1>Login Page</h1>
-    <form action="/auth/login" method="post">
+    <form action="/auth/login" method="post">   
         <p>
             <input type="text" name="username" placeholder="username">
         </p>
