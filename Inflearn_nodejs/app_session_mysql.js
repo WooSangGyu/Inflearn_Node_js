@@ -1,7 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var FileStore = require('session-file-store')(session);
+var MySQLStore = require('express-mysql-session')(session);
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -9,12 +9,20 @@ app.use(session({
     secret: '126498162asdrasydr0y10',
     resave: false, //session id를 접속할 때 마다 새롭게 발급하는것을 하지 않는다
     saveUninitialized: true, // session id를 session을 실제로 사용하기 전까지 발급하지 말아라
-    store:new FileStore()
+    store:new MySQLStore({          // mysql 연결
+        host: 'localhost',
+        port: 3306,
+        user: 'test',
+        password: 'test123',
+        database: 'testsession'
+    })
 }));
 
 app.get('/auth/logout', function(req, res){
     delete req.session.displayName;   // 세션 삭제
-    res.redirect('/welcome');
+    req.session.save(function(){        // database에 crud 하기 때문에 redirect가 저장되기 전에 일어날 수 있기 때문에 save라는 함수에 redirect을 준다.
+        res.redirect('/welcome');       // save라는 인자로 전달한 함수를 crud가 끝난 후 나중에 콜백을 주기 때문에 내용이 변경된 후에 redirect된다.
+    });
 });
 app.get('/welcome', function(req, res){
     if(req.session.displayName){ //만약 세션이 존재한다면 Hello displayName 띄우기.
@@ -40,7 +48,9 @@ app.post('/auth/login', function(req, res) {
 
     if(uname == user.username && pwd == user.password){     //입력한 아이디와 db의 아이디, 입력한 pw와 db비번 비교
         req.session.displayName = user.displayName;              //만약 같다면 displayName에 user.displayName을 넣기
-        res.redirect('/welcome');
+        req.session.save(function(){
+            res.redirect('/welcome');
+        });
     } else {                                 // 값이 다르다면
         res.send(`Who are you?
         <p>
@@ -67,12 +77,6 @@ app.get('/auth/login', function(req, res) { // submit을 클릭시 /auth/login�
     `;
     res.send(output);
 });
-
-
-
-
-
-
 
 
 app.get('/count', function(req, res){
