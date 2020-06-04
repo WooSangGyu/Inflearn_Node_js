@@ -15,27 +15,6 @@ console.log(testArray);
 
 
 
-//  array.some
-//  배열 요소 중 하나라도 특정 조건을 만족하는지 알고 싶을 때
-//  콜백 수행 중 true값을 return하면 바로 중단되며 true를 return한다.
-//  true가 한번도 return 되지 않은채 끝나면 최종적으로 false를 return 한다.
-
-
-var testArray = ["a", "b", "c", "d"];
-
-var isTrue = testArray.some(function (item, index, array) {
-
-	console.log(index + "번째 요소 : " + item);
-	return item.search("b")>-1;
-});
-
-//  expected output : "0번째 요소 a"
-//                    "1번째 요소 b"
-
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-
-
 //  map()
 //  배열 전체를 돌며 해당 배열 요소를 사용하여 "다른 새로운 배열"을 만들고 싶을 때
 
@@ -54,6 +33,29 @@ console.log(db);
 //  num = [2, 3, 4];
 //  db = [4, 6, 8];
 
+
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
+
+//  array.some
+//  배열 요소 중 하나라도 특정 조건을 만족하는지 알고 싶을 때
+//  콜백 수행 중 true값을 return하면 바로 중단되며 true를 return한다.
+//  true가 한번도 return 되지 않은채 끝나면 최종적으로 false를 return 한다.
+
+
+var testArray = ["a", "b", "c", "d"];
+
+var isTrue = testArray.some(function (item, index, array) {
+
+	console.log(index + "번째 요소 : " + item);
+	return item.search("b")>-1;
+});
+
+//  expected output : "0번째 요소 a"
+//                    "1번째 요소 b"
+
+
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 
@@ -69,6 +71,7 @@ console.log(obj.count);
 
 console.log(obj.result);
 //  expected output: true
+
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -102,6 +105,7 @@ var arr = [
 //                      {"name":"orange", "count": 16}
 //                    ]
 
+
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 
@@ -122,6 +126,7 @@ console.log(count);
 //  expected output : 2
 console.log(found);
 //  expected output : 15
+
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -159,6 +164,7 @@ console.log(count);
 //expected output: 5
 // initialValue가 있는경우 호출 횟수는 5번으로 증가함. 왜냐하면 첫 pre가 0이 전달됌.
 
+
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 
@@ -172,6 +178,7 @@ console.log(a.indexOf(2));
 //  expected output : 0
 console.log(a.indexOf(9));
 //  expected output : 2
+
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -193,4 +200,17 @@ console.log(JSON.stringify({ x: [10, undefined, function(){}, Symbol('')] }));
 console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)));
 //  expected output: ""2006-01-02T15:04:05.000Z""
 
+
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
+//  trim()
+//  문자열 좌우에서 공백을 제거하는 함수
+
+var str = " test ";
+var trimStr = str.trim();
+
+console.log(str);
+// expected output : " test "
+console.log(trimStr);
+// expected output : "test"
